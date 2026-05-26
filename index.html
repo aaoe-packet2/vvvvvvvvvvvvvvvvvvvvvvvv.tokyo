@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vvvvvvvvvvvvvvvvvvvvvvvv.tokyo</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      font-family: Arial, Helvetica, sans-serif;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 20px;
+    }
+
+    .wave {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: clamp(28px, 7vw, 96px);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
+    }
+
+    .wave span {
+      display: inline-block;
+      animation:
+        softWave 3.2s ease-in-out infinite,
+        rainbow 6s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes softWave {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      25% {
+        transform: translateY(-6px) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(4px) rotate(2deg);
+      }
+
+      75% {
+        transform: translateY(-3px) rotate(-1deg);
+      }
+    }
+
+    @keyframes rainbow {
+      0%   { color: #ff3366; }
+      20%  { color: #ff9900; }
+      40%  { color: #ffee00; }
+      60%  { color: #33ff99; }
+      80%  { color: #33ccff; }
+      100% { color: #cc66ff; }
+    }
+
+    .wallets {
+      text-align: center;
+      font-size: clamp(12px, 1.2vw, 16px);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.82);
+      font-family: "Courier New", monospace;
+      word-break: break-all;
+      max-width: 90vw;
+    }
+
+    .wallets div {
+      transition: opacity 0.3s ease;
+    }
+
+    .wallets div:hover {
+      opacity: 1;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="wave" id="waveText"></div>
+
+    <div class="wallets">
+      <div>BTC&nbsp;&nbsp;1AtLt1Ne5BtpZ6UjZ7uSCfjgsVCzf21Akb</div>
+      <div>ETH&nbsp;&nbsp;0xcd645e220c092285e380d84995bdc6594e17324a</div>
+      <div>LTC&nbsp;&nbsp;LTm923p4sneeDqhFi8Y22XHDmdqJBM3mBb</div>
+    </div>
+
+  </div>
+
+  <script>
+    const text = "vvvvvvvvvvvvvvvvvvvvvvvv.tokyo";
+    const container = document.getElementById("waveText");
+
+    text.split("").forEach((char, index) => {
+      const span = document.createElement("span");
+
+      span.textContent = char;
+
+      span.style.animationDelay = `
+        ${index * 0.08}s,
+        ${index * 0.15}s
+      `;
+
+      container.appendChild(span);
+    });
+  </script>
+
+</body>
+</html>
